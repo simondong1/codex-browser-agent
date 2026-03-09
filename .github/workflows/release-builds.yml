@@ -30,7 +30,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+
+      - name: Upgrade npm (Windows)
+        if: runner.os == 'Windows'
+        run: npm install -g npm@10.9.2
 
       - name: Install dependencies (macOS)
         if: runner.os != 'Windows'
@@ -38,7 +41,9 @@ jobs:
 
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
-        run: npm install --include=dev
+        run: |
+          npm cache clean --force
+          npm ci --include=dev --no-audit --no-fund
 
       - name: Verify build toolchain
         run: node -e "require.resolve('electron/package.json'); require.resolve('electron-builder/package.json'); require.resolve('vitest/package.json')"
