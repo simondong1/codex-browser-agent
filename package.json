@@ -1,0 +1,45 @@
+{
+  "name": "codex-browser-agent",
+  "version": "0.2.0",
+  "description": "Chromium-based browser with voice/text OpenAI web agent",
+  "main": "src/main.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "npm run test && electron-builder",
+    "build:dir": "npm run test && electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^32.2.0",
+    "electron-builder": "^26.0.12",
+    "vitest": "^3.2.4"
+  },
+  "build": {
+    "appId": "com.codex.browser.agent",
+    "productName": "Codex Browser Agent",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    }
+  }
+}

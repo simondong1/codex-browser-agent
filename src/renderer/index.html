@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codex Browser Agent</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="nav-controls">
+          <button id="backBtn" title="Back">Back</button>
+          <button id="forwardBtn" title="Forward">Forward</button>
+          <button id="reloadBtn" title="Reload">Reload</button>
+          <input id="urlInput" type="text" placeholder="Enter URL or search" />
+          <button id="goBtn">Go</button>
+          <button id="newTabBtn">+ Tab</button>
+        </div>
+        <div id="tabs" class="tabs"></div>
+      </header>
+
+      <aside id="agentPanel" class="agent-panel">
+        <section class="agent-header">
+          <h2>Web Agent</h2>
+          <button id="settingsBtn">Settings</button>
+        </section>
+
+        <section class="agent-quick">
+          <button class="quick-action" data-action="open-pge">Open PGE Login</button>
+          <button class="quick-action" data-action="google-10">Google x10 Tabs</button>
+          <button class="quick-action" data-action="history">Show History</button>
+        </section>
+
+        <section class="maneuver-wrap">
+          <h3>Maneuvers</h3>
+          <div id="maneuverLog" class="maneuver-log"></div>
+        </section>
+
+        <section id="chatLog" class="chat-log"></section>
+
+        <section class="agent-input">
+          <textarea id="agentText" rows="3" placeholder="Tell the agent what to do..."></textarea>
+          <div class="agent-input-row">
+            <button id="micBtn">Voice</button>
+            <button id="sendBtn">Send</button>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <dialog id="settingsModal">
+      <form method="dialog" id="settingsForm">
+        <h3>Agent Setup</h3>
+        <label>
+          Provider
+          <select id="providerSelect">
+            <option value="openai">OpenAI</option>
+          </select>
+        </label>
+        <label>
+          Model
+          <input id="modelInput" type="text" value="gpt-4.1-mini" />
+        </label>
+        <label>
+          OpenAI API Key
+          <input id="apiKeyInput" type="password" placeholder="sk-..." />
+        </label>
+        <menu>
+          <button value="cancel" type="button" id="cancelSettings">Cancel</button>
+          <button value="default" type="submit">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
