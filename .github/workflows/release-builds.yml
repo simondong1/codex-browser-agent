@@ -29,14 +29,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
-        run: npm install --include=dev
+        run: npm ci --include=dev
 
       - name: Run tests
-        run: npx vitest run
+        run: npm test
 
       - name: Build desktop app
         run: npx electron-builder --publish never --${{ matrix.target }}
